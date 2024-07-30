@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 5000",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -12,7 +12,7 @@
   "dependencies": {
     "clsx": "^2.1.1",
     "framer-motion": "^11.3.19",
-    "graphql": "^16.9.0",
+    "graphql": "^16.9.0", 
     "graphql-request": "^7.1.0",
     "mini-svg-data-uri": "^1.4.4",
     "next": "14.2.5",
