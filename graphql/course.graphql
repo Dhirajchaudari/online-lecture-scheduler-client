@@ -1,0 +1,23 @@
+mutation AddCourse($input: AddCourseInput!) {
+  addCourse(input: $input)
+}
+
+# delete course
+mutation deleteCourse($id: String!) {
+  deleteCourse(id: $id)
+}
+
+query GetAllCourses {
+  getAllCourses {
+    name
+    _id
+    desc
+    duration
+    price
+        status
+    image
+    level
+    createdAt
+    updatedAt
+  }
+}

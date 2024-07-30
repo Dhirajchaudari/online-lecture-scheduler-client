@@ -1,0 +1,34 @@
+query GetAllInstructors {
+  getAllInstructors {
+    _id
+    admin {
+      _id
+      name
+      email
+      phone
+      role
+      numberOfResetPassword
+      createdAt
+      updatedAt
+    }
+    courses {
+      _id {
+        _id
+      }
+      id
+      name
+    }
+  }
+}
+
+mutation AddAdmin($input: AddAdminInput!) {
+  addAdmin(input: $input)
+}
+
+query ResetAdminPassoword($id: String!, $password: String!) {
+  resetPasswordAdmin(id: $id, password: $password)
+}
+
+mutation DeleteInstructor($id: String!) {
+  deleteInstructor(id: $id)
+}
