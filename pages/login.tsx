@@ -5,7 +5,7 @@ import logo1 from "../assets/logo/logoDark.jpg";
 import { sdk } from "@/utils/graphqQlClient";
 import useGlobalStore from "@/store/global";
 import { GetServerSideProps } from "next";
-import { parseCookies } from "nookies";
+import { parseCookies,setCookie } from "nookies";
 import { extractErrorMessage } from "@/utils/helper";
 import CButton from "@/components/common/button/button";
 import { ButtonType } from "@/components/common/button/interface";
@@ -62,6 +62,27 @@ export default function Login() {
       if (response) {
         setToastData({ message: "Login Successful", type: "success" });
 
+        // Check production environment and endpoint URL
+        const isProduction = process.env.NEXT_PUBLIC_SERVER_IS_PROD === "true";
+        const prodEndpoint = process.env.NEXT_PUBLIC_SERVER_PROD_URL;
+        const devEndpoint = process.env.NEXT_PUBLIC_SERVER_DEV_URL;
+        console.log(response)
+          // create cookie
+      if (isProduction) {
+        setCookie(null,"accessToken", response.adminLogin.toString(), {
+          maxAge: 3.154e10,
+          httpOnly: false,
+          sameSite: "none",
+          secure: true,
+          domain: `.vercel.app`,
+          path: "/",
+        });
+      } else {
+        setCookie(null,"accessToken", response.adminLogin.toString(), {
+          maxAge: 3.154e10,
+          httpOnly: false,
+        });
+        }
         router.replace("/");
       }
 
